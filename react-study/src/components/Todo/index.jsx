@@ -1,8 +1,8 @@
-import Button from '../../Button';
+import Button from '../Button';
 
 import * as S from './styled';
 
-function Todo() {
+function Todo(props) {
   return (
     <S.Container>
       <S.Title></S.Title>
