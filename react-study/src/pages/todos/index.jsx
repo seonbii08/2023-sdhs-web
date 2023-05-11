@@ -1,31 +1,42 @@
-import { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
 import * as S from './styled';
-
 import CreateItemBox from './CreateItemBox';
 import ItemList from './ItemList';
-import Button from '../../components/Button';
+import { v4 as uuidv4 } from 'uuid';
+import { useState } from 'react';
 
-function Todos() {
+export default function Todos() {
   const [todoName, setTodoName] = useState('');
   const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    const TODOS_FORM_LOCALSTORAGE = JSON.parse(localStorage.getItem('todos')) || [];
+    setTodos(TODOS_FORM_LOCALSTORAGE);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
   const createTodo = () => {
-    if (!todoName.trim()) {
-      alert('값이 없습니다.');
-      return;
-    }
     setTodoName('');
-    setTodos(prevState => [...prevState, { id: prevState.length + 1, name: todoName }]);
+    setTodos(prevState => [...prevState, { id: uuidv4(), name: todoName }]);
+  };
+
+  const deleteTodo = id => {
+    const findIndex = todos.findIndex(v => v.id === id);
+    setTodos(prevState => {
+      const tempArr = [...prevState];
+      tempArr.splice(findIndex, 1);
+      return tempArr;
+    });
   };
 
   return (
     <S.Container>
-      <S.Title>To do list</S.Title>
+      <S.Title>Todo List</S.Title>
       <CreateItemBox value={todoName} onChange={setTodoName} createTodo={createTodo} />
-      <ItemList todos={todos} />
+      <ItemList todos={todos} deleteTodo={deleteTodo} />
     </S.Container>
   );
 }
-
-export default Todos;
