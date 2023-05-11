@@ -1,31 +1,21 @@
 import styled from 'styled-components';
-import { Button } from '../Button/styled';
+
 export const Container = styled.li`
+  font-color: #666;
+  width: 100%;
+  list-style: none;
+  gap: 1rem;
+  border: 1px solid #eee;
+  padding: 10px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid black;
-  > ${Button} {
-    position: relative;
-    right: 0px;
-    bottom: -1px;
-    width: 50px;
-    outline: 0;
-    border: 0;
-    background-color: black;
-    color: #fff;
-    height: 30px;
-  }
-  > ${Button}:nth-child(2n + 1) {
-    background-color: red;
-    border-radius: 0 5px 0 0;
-  }
-
-  > ${Button}:nth-child(2n) {
-    border-radius: 5px 0 0 0;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  > p {
+    margin-right: auto;
   }
 `;
 
 export const Title = styled.p`
-  font-size: 16px;
-  width: 175px;
+  font-size: 1rem;
 `;
