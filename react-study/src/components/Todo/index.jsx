@@ -1,15 +1,11 @@
-import Button from '../Button';
 import * as S from './styled';
+import Button from '../Button';
 
-function Todo(props) {
-  const { deleteTodo } = props;
+export default function Todo({ children, deleteTodo }) {
   return (
     <S.Container>
-      <S.Title>{props.children}</S.Title>
-      <Button>중요</Button>
+      <S.Title>{children}</S.Title>
       <Button onClick={deleteTodo}>삭제</Button>
     </S.Container>
   );
 }
-
-export default Todo;

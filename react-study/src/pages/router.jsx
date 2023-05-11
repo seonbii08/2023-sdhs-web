@@ -1,9 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
-import Main from './main';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Main from './main/index';
 import Todos from './todos';
 
-function Router() {
+export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
@@ -13,5 +12,3 @@ function Router() {
     </BrowserRouter>
   );
 }
-
-export default Router;
