@@ -1,24 +1,20 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import * as S from './styled';
+
 import CreateItemBox from './CreateItemBox';
 import ItemList from './ItemList';
-import { v4 as uuidv4 } from 'uuid';
-import { useState } from 'react';
 
-export default function Todos() {
+function Todos() {
   const [todoName, setTodoName] = useState('');
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    const TODOS_FORM_LOCALSTORAGE = JSON.parse(localStorage.getItem('todos')) || [];
-    setTodos(TODOS_FORM_LOCALSTORAGE);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
-
   const createTodo = () => {
+    // if (!todoName.trim()) {
+    //   alert("값이 없습니다.");
+    //   return;
+    // }
     setTodoName('');
     setTodos(prevState => [...prevState, { id: uuidv4(), name: todoName }]);
   };
@@ -32,11 +28,31 @@ export default function Todos() {
     });
   };
 
+  useEffect(() => {
+    try {
+      const parseTodos = JSON.parse(localStorage.getItem('todos'));
+      setTodos(parseTodos);
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      const stringifyTodos = JSON.stringify(todos);
+      localStorage.setItem('todos', stringifyTodos);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [todos]);
+
   return (
     <S.Container>
-      <S.Title>Todo List</S.Title>
+      <S.Title>To do list</S.Title>
       <CreateItemBox value={todoName} onChange={setTodoName} createTodo={createTodo} />
       <ItemList todos={todos} deleteTodo={deleteTodo} />
     </S.Container>
   );
 }
+
+export default Todos;

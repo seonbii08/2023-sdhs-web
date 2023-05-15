@@ -1,6 +1,11 @@
 import * as S from './styled';
-import React from 'react';
 
-export default function Button(props) {
-  return <S.Button {...props}>{props.children}</S.Button>;
+function Button(props) {
+  return (
+    <>
+      <S.Button {...props}>{props.children}</S.Button>
+    </>
+  );
 }
+
+export default Button;

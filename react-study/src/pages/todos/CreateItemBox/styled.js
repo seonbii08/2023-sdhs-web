@@ -1,40 +1,42 @@
 import styled from 'styled-components';
 
+import { Button } from '../../../components/Button/styled';
+
 export const InputBox = styled.div`
   display: flex;
+  gap: 4px;
   width: 100%;
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, hotpink, lightblue);
-    background-size: 92% 3px;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: all 0.25s;
-  }
-  &:hover::before {
-    transform: scaleX(1);
+
+  ${Button} {
+    flex-grow: 1;
+    flex-shrink: 0;
+    padding: 6px 14px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 6px;
+    &:hover {
+      background: #d6d6d6;
+    }
+    &:disabled {
+      cursor: not-allowed;
+    }
+    &:disabled:hover {
+      background: rgba(239, 239, 239, 0.3);
+    }
   }
 `;
 
 export const Input = styled.input`
+  flex-shrink: 0;
   width: 100%;
-  padding: 5px;
-  font-size: 1.15rem;
-  outline: none;
-  border: 1px solid #eee;
-  transition: all 0.25s;
-  /* &:focus {
-    background: linear-gradient(90deg, hotpink, lightblue);
-    background-size: 100% 3px;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-  } */
+  padding: 4px 8px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 4.5px rgba(156, 156, 156, 0.6);
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 4.5px rgba(156, 156, 156, 1);
+  }
 `;
