@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Main from './main';
-import Todos from './todoss';
+import Todos from './todos';
 
 function Router() {
   return (
