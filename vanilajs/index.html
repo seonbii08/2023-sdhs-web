@@ -26,6 +26,9 @@
             // state를 할당
             const state = states[key];
             const setState = (newState) => {
+                if (newState === state) return;
+
+                if (JSON.stringify(newState) === JSON.stringify(state)) return;
                 // state를 직접 수정하는 것이 아닌, state 내부의 값을 수정
                 // (x) states = [...states, newState];
                 // (o) 
@@ -58,6 +61,8 @@
         }
 
         function Cat() {
+
+
             const [cat, setCat] = useState('고양이');
 
             window.meow = () => setCat(cat + ' 야옹!');
@@ -70,18 +75,55 @@
             `;
         }
 
-        function render () {
+        function CounterAndMeow(){
+            const [count, setCount] = useState(1);
+            const [cat, setCat] = useState('야옹 !');
+
+            function countMeow (newCount){
+                setCount(newCount);
+                setCat('야옹! '.repeat(newCount));
+            }
+
+            window.increment = () => countMeow(count + 1);
+            window.decrement = () => countMeow(count - 1);
+
+            return `
+                <div>
+                    <p>고양이가 ${count}번 울어서 ${cat} </p>
+                    <button onclick="increment()">증가</button>
+                    <button onclick="decrement()">감소</button>
+                </div>
+            `
+        }
+
+
+        function debounceFrame (callback) {
+            let nextFrameCallback = -1;
+            return () => {
+                cancelAnimationFrame(nextFrameCallback);
+                nextFrameCallback = requestAnimationFrame(callback)
+            }
+        };
+
+
+        let renderCount = 0;
+
+        const render = debounceFrame(() => {
             // document의 id가 app인 element를 찾아서
             const $app = document.querySelector('#app');
             // element의 innerHTML을 Counter의 return 값으로 변경해준다.
             $app.innerHTML = `
                 <div>
-                    ${Counter()}
-                    ${Cat()}
+                    ${renderCount}
+                    ${CounterAndMeow()}
                 </div>
             `;
+
+            // ${Counter()}
+            // ${Cat()}
+            renderCount += 1;
             currentStateKey = 0;
-        }
+        });
 
         render();
     </script>
