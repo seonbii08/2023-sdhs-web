@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import * as S from './styled';
 
-function SerchInput({ onChange }) {
+function SearchInput({ onChange }) {
   //   const [value, setValue] = useState('');
 
   //   const handleValue = ({ target: { value } }) => {
