@@ -9,7 +9,11 @@ function SearchInput({ onchange }) {
 
   return (
     <S.SearchInputBox>
+
+      <S.SerchInputf
+
       <S.SerchInput
+
         placeholder="검색할 내용을 입력하세요."
         onChange={handleValue}
       />
