@@ -1,13 +1,17 @@
-import React from 'react';
 import * as S from './styled';
+
 import Todo from '../../../components/Todo';
 
-export default function ItemList({ todos, deleteTodo }) {
+function ItemList({ todos, deleteTodo }) {
   return (
     <S.ItemList>
       {todos.map(({ id, name }) => {
+        const handleDeleteTodo = () => {
+          deleteTodo(id);
+        };
+
         return (
-          <Todo key={id} deleteTodo={() => deleteTodo(id)}>
+          <Todo key={id} deleteTodo={handleDeleteTodo}>
             {name}
           </Todo>
         );
@@ -15,3 +19,5 @@ export default function ItemList({ todos, deleteTodo }) {
     </S.ItemList>
   );
 }
+
+export default ItemList;

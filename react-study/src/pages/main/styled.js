@@ -10,7 +10,7 @@ export const Container = styled.div`
   height: 100vh;
 `;
 
-export const MainWapper = styled.div`
+export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@ export const MainWapper = styled.div`
     font-size: 16px;
     cursor: pointer;
     &:hover {
-      background-color: #d6d6d6;
+      background: #d6d6d6;
     }
     > a {
       color: #000000;

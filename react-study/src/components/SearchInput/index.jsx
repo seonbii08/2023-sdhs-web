@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import * as S from './styled';
 
-function SerchInput({ onChange }) {
+function SearchInput({ onChange }) {
   //   const [value, setValue] = useState('');
 
   //   const handleValue = ({ target: { value } }) => {
@@ -15,7 +15,7 @@ function SerchInput({ onChange }) {
 
   return (
     <S.SearchInputBox>
-      <S.SerchInput placeholder='검색할 내용을 입력하세요.' value={value} onChang={handleValue} />
+      <S.SerchInput placeholder='검색할 내용을 입력하세요.' value={value} onChange={handleValue} />
     </S.SearchInputBox>
   );
 }
